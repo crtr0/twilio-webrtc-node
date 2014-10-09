@@ -2,13 +2,12 @@
 
 ## Setup
 
-`git clone <this repo>`
-
-`npm install`
-
 ```
+git clone <this repo>
+npm install
 export TWILIO_ACCOUNT_SID=YOUR_ACCOUNT_SID
 export TWILIO_AUTH_TOKEN=YOUR_AUTH_TOKEN
+node .
 ```
 
 ## Get the app on the public Internet
@@ -23,13 +22,13 @@ Use a tool like [Ngrok](http://ngrok.com) to tunnel localhost.
 
 ## View the Presentation
 
-Go to http://yourdomain/index.html in your browser.
+Go to http://yourdomain/ in your browser.
 
 ## Connect it to Twilio
 
 1. Sign-up for a [free Twilio account](http://twilio.com/try-twilio)
 2. Purchase a new Twilio number or use the one you are given
-3. Set your `Messaging Request URL` to `http://yourdomain/sms` and `HTTP GET`.
+3. Set your `Messaging Request URL` to `http://yourdomain/message` and `HTTP GET`.
 
 ## Send and Recieve SMS
 
