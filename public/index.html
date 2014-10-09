@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Twilio &amp; WebRTC Turns Your Browser Into a Phone</title>
+
+		<meta name="description" content="">
+		<meta name="author" content="Carter Rabasa">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/twilio.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div id="logo"></div>
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Twilio &amp; WebRTC</h1>
+					<h2>Turning Your <em>Browser</em></h2>
+					<h2>into a <em>Phone</em></h2>
+					<p>Carter Rabasa, Developer Evangelist</p>
+					<aside class="notes">
+					* Topic of talk
+					* Thank the organizers
+					</aside>
+				</section>
+
+				<section>
+					<h2>I'm <em>Carter</em></h2>
+					<p><img src="img/karaoke.png"/></p>
+					<aside class="notes">
+					* Been at Twilio for 2 1/2 years 
+					* 
+					</aside>
+				</section>
+
+				<section>
+					<h3>@CarterRabasa</h3>
+					<h3>github.com/crabasa</h3>
+					<h3>carter@twilio.com</h3>
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<img src="img/twilio-red.png"/>
+					<h2>Twilio is Changing <em>Communications</em> Forever</h2>
+					<p class="fragment">By migrating the communications industry from legacy in <em>hardware</em> to its future in <em>software</em>.</p>
+					<aside class="notes">
+					* We do this by making it easy for developers to programatically send and receive text messages and make and receieve voice and VOIP phone calls.
+					* Other industries undergoing this transformation include: 
+						* Payments (Square)
+						* Hosting (Digital Ocean)
+						* Transporation (Uber)
+					</aside>
+				</section>
+
+				<section>
+					<h2>Built on <em>Web</em> Standards</h2>
+					<p><img src="/img/twilio_design.png"/></p>
+					<aside class="notes">
+					* RESTful API for Outbound
+					* Webhooks for Inbound
+					* WebRTC for VOIP in the browser
+					</aside>
+				</section>
+
+				<section>
+					<script type="text/javascript" src="/js/libgif.js"></script>
+					<img id="best_gif" src="" rel:animated_src="/img/best.gif" rel:auto_play="0" width="467" height="375" style="display:none"/>
+					<aside class="notes">
+					* So, what happens when you take an industry like telecom and you unleash developers on it?
+					* [Click the image]
+					</aside>
+				</section>
+
+				<section>
+					<h2>Let's Write Some <em>Code</em></h2>
+					<aside class="notes">
+					1) Purchase phone number
+					2) Explain webhooks
+					3) Write simple Node app to handle incoming text messages
+					4) Run ngrok
+					5) Wire up Messaging Request URL
+					6) Ask audience to send a text
+					7) Write some code to call them back
+					</aside>
+				</section>
+
+				<section>
+					<h2>Web<em>RTC</em></h2>
+					<p>Enables realtime communication in the browser via open peer-to-peer protocols.</p>
+					<aside class="notes">
+					* Check-out last month's talk by Feross
+					</aside>
+				</section>
+
+				<section>
+					<h2>WebRTC is not <em>simple</em></h2>
+					<h3>ICE</h3>
+					<h3><em>STUN</em></h3>
+					<h3>TURN</h3>
+					<h3><em>NAT</em></h3>
+					<h3>SDP</h3>
+					<aside class="notes">
+					An end-to-end WebRTC solution is non-trivial. But there are some resources that can help.
+					</aside>
+				</section>
+
+				<section>
+					<p><img style="width:100%" src="img/simplewebrtc.png"/></p>
+					<aside class="notes">
+					From the fine people at AndYet. 
+					</aside>
+				</section>
+
+				<section>
+					<h2>Is WebRTC <em>Ready</em> Yet?</h2>
+					<img src="/img/iswebrtcready.png"/>
+					<p><small>credit: iswebrtcreadyyet.com</small></p>
+				</section>
+				
+				<section>
+				    <p><img src="/img/client_diagram.png"/></p>
+
+					<aside class="notes">
+					* Twilio Client is our VOIP product
+					* We have SDKs for Android, iOS and the web
+					* The web SDK is powered by WebRTC
+					* Falls back on Flash 
+					</aside>
+				</section>
+
+				<section>
+				    <p><img src="/img/twilio_client.png"/></p>
+
+				    
+					<aside class="notes">
+					* add twilio.js script tag
+					* Twilio.Device.setup
+					* Twilio.Device.incoming
+					* write /voip function
+					* set new Voice Request URL
+					</aside>
+				</section>
+
+				<section>
+					<style>
+						svg {
+							background-color: #3b3b3c;
+						}
+						circle {
+							fill: none;
+							stroke: #398FBD;
+						}
+					</style>
+
+					<h2>WebRTC <em>+</em> Web Audio API</h2>
+					<!--div id="audio_level"></div-->
+					<canvas id="canvas" width="640" height="320"></canvas>
+					<aside class="notes">
+					* One of the cool things about WebRTC is how it plays nicely with other web standards
+					* Here's an example of analysing the volume of the call using Web Audio
+					</aside>
+				</section>
+
+				<section>
+					<h1>Thank <em>You</em></h1>
+					<h2>Carter Rabasa</h2>
+					<h3>Developer Evangelist</h3>
+				</section>
+
+				<section>
+					<h3><em>Code</em></h3>
+					<p>github.com/crabasa/twilio-webrtc-node</p><br/><br/>
+					<h3><em>Sign-up</em></h3>
+					<p>twilio.com</p><br/><br/>
+					<h3><em>Get $50</em></h3>
+					<p>Use the Promo Code <b>SEATTLEJS</b></p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="js/visualizemediastream.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+    <script type="text/javascript"
+      src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+		<script type="text/javascript">
+		 	// some dirty code to handle the on-demand animation of a Gif.
+			frame=1;
+			var sup1 = new SuperGif({ gif: document.getElementById('best_gif') } );
+
+			sup1.load(function(){
+				sup1.move_to(frame);
+				$('.jsgif canvas').css('width', '100%');
+				$('.jsgif').show();
+			});
+			$('.jsgif').hide();
+			$('.jsgif').on('click', function(){
+			sup1.play();
+			});
+		</script>
+
+
+	</body>
+</html>

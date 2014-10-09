@@ -1,0 +1,33 @@
+{
+  "name": "twilio-webrtc-node",
+  "version": "0.0.1",
+  "description": "Having fun with Twilio, WebRTC and Web Audio",
+  "homepage": "",
+  "subdomain": "",
+  "scripts": {
+    "test": "",
+    "start": "index.js"
+  },
+  "author": {
+    "name": "Carter Rabasa",
+    "email": "carter@twilio.com",
+    "web": "http://twitter.com/carterrabasa"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crabasa/twilio-webrtc-node.git"
+  },
+  "engines": {
+    "node": "~1.0.0"
+  },
+  "dependencies": {
+    "node-static": "^0.7.6",
+    "twilio": "^1.7.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": ""
+    }
+  ]
+}
