@@ -9,31 +9,30 @@ http.createServer(function(request, response) {
   request.addListener('end', function () {
     var hash = url.parse(request.url, true);
     if (hash.pathname === '/message') {
-      twiml = new twilio.TwimlResponse();
+      var twiml = new twilio.TwimlResponse();
       twiml.message(function() {
-        this.body("Thanks for playing along. Hope you like this JavaScript joke!");
-        this.media('http://1405ef22.ngrok.com/img/joke.jpg');
+        this.body("Thanks for helping me out with my talk. Here's a funny JavaScript joke for you. Love, Carter");
+        this.media('http://' + request.headers['host'] + '/img/joke.jpg');
       });
-      response.writeHead(200, {'Content-type': 'text/xml'});
+      response.writeHead(200, {'content-type': 'text/xml'});
       response.end(twiml.toString());
     }
-    else if (hash.pathname === '/token') {
-      var capability = new twilio.Capability();
-      capability.allowClientOutgoing('APc11a96ef976afd91cd58ca11a9daf118');
-      response.end(capability.generate());
-    }
     else if (hash.pathname === '/random') {
-      var client = new twilio.RestClient();
-      client.messages.list({to: '+13059648570'}, function(err, result) {
-        var random = result.messages[Math.floor(Math.random() * result.messages.length - 1)];
-        var random = '+12022856865'
-        twiml = new twilio.TwimlResponse();
-        twiml.dial({callerId: '+12068666338'}, function() {
-         this.number(random);
+      var client = new twilio.RestClient(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+      client.messages.list({'To': 'yyy'}, function(err, data) {
+        random = data.messages[Math.floor(Math.random() * data.messages.length - 1)];
+        var twiml = new twilio.TwimlResponse();
+        twiml.dial({'callerId': 'yyy'}, function() {
+          this.number(random.from);
         });
-        response.writeHead(200, {'Content-type': 'text/xml'});
-        response.end(twiml.toString());       
+        response.writeHead(200, {'content-type': 'text/xml'});
+        response.end(twiml.toString());        
       });
+    }
+    else if (hash.pathname === '/token') {
+      var capability = new twilio.Capability(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+      capability.allowClientOutgoing('APxxx');
+      response.end(capability.generate());
     }
     else {
       file.serve(request, response);

@@ -42,7 +42,7 @@ function visualizeMediaStream(stream) {
 	microphone = audioContext.createMediaStreamSource(stream);
 
   // magical constants
-	analyser.smoothingTimeConstant = 0.3;
+	analyser.smoothingTimeConstant = 0.85;
 	analyser.fftSize = 512;
 
   // connect the microphone to the analyser
