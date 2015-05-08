@@ -7,7 +7,7 @@ git clone <this repo>
 npm install
 export TWILIO_ACCOUNT_SID=YOUR_ACCOUNT_SID
 export TWILIO_AUTH_TOKEN=YOUR_AUTH_TOKEN
-node .
+npm start
 ```
 
 ## Get the app on the public Internet
