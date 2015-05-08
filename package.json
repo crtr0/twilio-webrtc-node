@@ -6,7 +6,7 @@
   "subdomain": "",
   "scripts": {
     "test": "",
-    "start": "index.js"
+    "start": "node index.js"
   },
   "author": {
     "name": "Carter Rabasa",
